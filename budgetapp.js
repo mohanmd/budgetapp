@@ -1,18 +1,6 @@
 // console.log("start");
 
 var budgetControler = (function(){
-    // var x = 10;
-
-    // var add = function(a){
-    //     return x+a;
-    // }
-
-    // return{
-    //     publicTest: function(b){
-    //        return add(b);
-    //     }
-    // }
-
     var Income = function(id, description, value ){
         this.id = id;
         this.description = description;
@@ -54,13 +42,16 @@ var budgetControler = (function(){
         addItemCtrl: function(type, description, value){
             var ID, newItem;
             ID = 0;
-    
+            
+            console.log(data.allItems[type].length);
             // create new id
-            if(ID > 0){
+            if(data.allItems[type].length > 0){
+                alert('id 1');
                 ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
                 console.log('id 1');
             }else{
-                ID = 0;console.log('id 1');
+                ID = 0;
+                console.log('id 0');
             }
     
             // create new object using id
@@ -73,6 +64,15 @@ var budgetControler = (function(){
             data.allItems[type].push(newItem);
     
             return newItem;
+        },
+
+        deleteItem: function(type, id){
+            var id, index;
+
+            ids = data.allItems[type].map(function(current){
+                return current.id;
+                console.log(current.id);
+            });
         },
 
         calculateBudget: function(){
