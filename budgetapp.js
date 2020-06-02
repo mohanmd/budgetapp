@@ -1,6 +1,21 @@
 // console.log("start");
 
 var budgetControler = (function(){
+<<<<<<< HEAD
+=======
+    // var x = 10;
+
+    // var add = function(a){
+    //     return x+a;
+    // }
+
+    // return{
+    //     publicTest: function(b){
+    //        return add(b);
+    //     }
+    // }
+
+>>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
     var Income = function(id, description, value ){
         this.id = id;
         this.description = description;
@@ -42,6 +57,7 @@ var budgetControler = (function(){
         addItemCtrl: function(type, description, value){
             var ID, newItem;
             ID = 0;
+<<<<<<< HEAD
             
             console.log(data.allItems[type].length);
             // create new id
@@ -52,6 +68,14 @@ var budgetControler = (function(){
             }else{
                 ID = 0;
                 console.log('id 0');
+=======
+    
+            // create new id
+            if(ID > 0){
+                ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+            }else{
+                ID = 0;
+>>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
             }
     
             // create new object using id
@@ -66,6 +90,7 @@ var budgetControler = (function(){
             return newItem;
         },
 
+<<<<<<< HEAD
         deleteItem: function(type, id){
             var id, index;
 
@@ -75,6 +100,8 @@ var budgetControler = (function(){
             });
         },
 
+=======
+>>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
         calculateBudget: function(){
             calculateTotal('inc');
             calculateTotal('exp');
@@ -122,7 +149,10 @@ var uiControler = (function(){
         incLabel: '.budget__income--value',
         expLabel: '.budget__expenses--value',
         percentageLabel: '.budget__expenses--percentage',
+<<<<<<< HEAD
         container: '.container',
+=======
+>>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
     }
 
     // get input value
@@ -195,7 +225,10 @@ var uiControler = (function(){
 var appControler = (function(uiCtrl, budctrl){
 
     function addEventlistner(){
+<<<<<<< HEAD
         var DOM = uiCtrl.getDomStrings();
+=======
+>>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
         document.querySelector('.add__btn').addEventListener('click',  addItem);
 
         document.addEventListener('keypress', function(event){
@@ -204,9 +237,12 @@ var appControler = (function(uiCtrl, budctrl){
                 addItem();
             }
         });
+<<<<<<< HEAD
 
         // delete event
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteitem);
+=======
+>>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
     }
 
     // update budget function
@@ -225,7 +261,11 @@ var appControler = (function(uiCtrl, budctrl){
         console.log(budget);
     }
 
+<<<<<<< HEAD
     var addItem = function(){
+=======
+    function addItem(){
+>>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
         var input, newItem;
         
         // 1.get input data
@@ -247,12 +287,15 @@ var appControler = (function(uiCtrl, budctrl){
 
     }
 
+<<<<<<< HEAD
     var ctrlDeleteitem = function(event){
         var deleteItemId = event.target.parentNode.parentNode.parentNode.parentNode.id;
 
         console.log(deleteItemId);
     }
 
+=======
+>>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
     return {
         init: function(){
             return addEventlistner();
