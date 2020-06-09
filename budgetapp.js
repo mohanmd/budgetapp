@@ -1,21 +1,6 @@
 // console.log("start");
 
 var budgetControler = (function(){
-<<<<<<< HEAD
-=======
-    // var x = 10;
-
-    // var add = function(a){
-    //     return x+a;
-    // }
-
-    // return{
-    //     publicTest: function(b){
-    //        return add(b);
-    //     }
-    // }
-
->>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
     var Income = function(id, description, value ){
         this.id = id;
         this.description = description;
@@ -57,7 +42,6 @@ var budgetControler = (function(){
         addItemCtrl: function(type, description, value){
             var ID, newItem;
             ID = 0;
-<<<<<<< HEAD
             
             console.log(data.allItems[type].length);
             // create new id
@@ -68,14 +52,6 @@ var budgetControler = (function(){
             }else{
                 ID = 0;
                 console.log('id 0');
-=======
-    
-            // create new id
-            if(ID > 0){
-                ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
-            }else{
-                ID = 0;
->>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
             }
     
             // create new object using id
@@ -90,18 +66,22 @@ var budgetControler = (function(){
             return newItem;
         },
 
-<<<<<<< HEAD
         deleteItem: function(type, id){
-            var id, index;
+            var ids, index;
 
             ids = data.allItems[type].map(function(current){
                 return current.id;
                 console.log(current.id);
             });
+
+            index = ids.indexOf(id);
+            console.log(index);
+
+            if(index !== -1){
+                data.allItems[type].slice(index, 1);
+            }
         },
 
-=======
->>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
         calculateBudget: function(){
             calculateTotal('inc');
             calculateTotal('exp');
@@ -149,10 +129,7 @@ var uiControler = (function(){
         incLabel: '.budget__income--value',
         expLabel: '.budget__expenses--value',
         percentageLabel: '.budget__expenses--percentage',
-<<<<<<< HEAD
         container: '.container',
-=======
->>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
     }
 
     // get input value
@@ -176,11 +153,11 @@ var uiControler = (function(){
             if(type == 'inc'){
                 element = DomStrings.incomeClass;
 
-                html = '<div class="item clearfix" id="income-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+                html = '<div class="item clearfix" id="inc-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }else if(type == 'exp'){
                 element = DomStrings.expenseClass;
 
-                html = '<div class="item clearfix" id="expense-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">10%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';            
+                html = '<div class="item clearfix" id="exp-%id%"><div class="item__description">%description%</div><div class="right clearfix"><div class="item__value">%value%</div><div class="item__percentage">10%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';            
             }
             newHtml = html.replace('%id%', obj.id);
             newHtml = newHtml.replace('%description%', obj.description);
@@ -223,12 +200,10 @@ var uiControler = (function(){
 
 
 var appControler = (function(uiCtrl, budctrl){
-
+    var addItem,  updateBudget, ctrlDeleteitem;
+    
     function addEventlistner(){
-<<<<<<< HEAD
         var DOM = uiCtrl.getDomStrings();
-=======
->>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
         document.querySelector('.add__btn').addEventListener('click',  addItem);
 
         document.addEventListener('keypress', function(event){
@@ -237,16 +212,13 @@ var appControler = (function(uiCtrl, budctrl){
                 addItem();
             }
         });
-<<<<<<< HEAD
 
         // delete event
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteitem);
-=======
->>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
     }
 
     // update budget function
-    var updateBudget = function(){
+    updateBudget = function(){
         var budget;
 
         //1 calculateBudget
@@ -261,11 +233,7 @@ var appControler = (function(uiCtrl, budctrl){
         console.log(budget);
     }
 
-<<<<<<< HEAD
-    var addItem = function(){
-=======
-    function addItem(){
->>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
+    addItem = function(){
         var input, newItem;
         
         // 1.get input data
@@ -285,17 +253,27 @@ var appControler = (function(uiCtrl, budctrl){
             updateBudget();
         }
 
+    },
+
+
+    ctrlDeleteitem = function(event){
+        var ItemId = event.target.parentNode.parentNode.parentNode.parentNode.id;
+
+        if(ItemId){
+           var splitId, deleteItemId, deleteItemType;
+
+           splitId = ItemId.split('-');
+
+           deleteItemType = splitId[0];
+           deleteItemId = splitId[1];
+
+           console.log(deleteItemId, deleteItemType);
+
+        //    1. delete item data structure
+            budctrl.deleteItem(deleteItemType, deleteItemId);
+        }
     }
 
-<<<<<<< HEAD
-    var ctrlDeleteitem = function(event){
-        var deleteItemId = event.target.parentNode.parentNode.parentNode.parentNode.id;
-
-        console.log(deleteItemId);
-    }
-
-=======
->>>>>>> 43b3f4eeeff91a6b6259515bc2be2b4e5b4f4ecc
     return {
         init: function(){
             return addEventlistner();
